@@ -20,35 +20,30 @@ p = [] #lista que vai receber as portas
 
 #Os desenhos do programa são criados em arquivo 'txt' e chamado dentro de suas funções que tem seus nomes.
 #Aqui foi trabalhado o conceito de abertura de arquivo, leitura e fechamento
-def todas_portas():
-    arquivo = open('todas_portas.txt','r')
-    for linha in arquivo.readlines():
-        print(linha)
-    arquivo.close()
-    
 def ganhou():
-    arquivo = open('carro.txt','r')
-    for linha in arquivo.readlines():
-        print(linha)
-    arquivo.close()
+    with open("ganhou.txt","r") as arquivo:
+        for linha in arquivo.read().splitlines():
+            print(linha)
+
+def perdeu():
+    with open("perdeu.txt","r") as arquivo:
+        for linha in arquivo.read().splitlines():
+            print(linha)
     
 def porta1():
-    arquivo = open('porta1.txt','r')
-    for linha in arquivo.readlines():
-        print(linha)
-    arquivo.close()
+    with open("porta1.txt","r") as arquivo:
+        for linha in arquivo.read().splitlines():
+            print(linha)
     
 def porta2():
-    arquivo = open('porta2.txt','r')
-    for linha in arquivo.readlines():
-        print(linha)
-    arquivo.close()
+    with open("porta2.txt","r") as arquivo:
+        for linha in arquivo.read().splitlines():
+            print(linha)
     
 def porta3():
-    arquivo = open('porta3.txt','r')
-    for linha in arquivo.readlines():
-        print(linha)
-    arquivo.close()
+    with open("porta3.txt","r") as arquivo:
+        for linha in arquivo.read().splitlines():
+            print(linha)
 
 #Aqui começa o programa
 print('\nHá um prêmio atrás de uma das 3 portas. ')
