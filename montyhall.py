@@ -16,105 +16,116 @@ import os
 from random import randint
 os.system('cls')
 p = [] 
-
-#Os desenhos do programa são criados em arquivo 'txt' e chamado dentro de suas funções que tem seus nomes.
-#Aqui foi trabalhado o conceito de abertura de arquivo, leitura e fechamento
+print("Este é o LET´S MAKE A DEAL\nHá um prêmio em uma das 3 portas disponíveis.")    
 def todas_portas():
     with open("todas_portas.txt","r") as arquivo:
         for linha in arquivo.read().splitlines():
             print(linha)
-               
 def ganhou():
     with open("ganhou.txt","r") as arquivo:
         for linha in arquivo.read().splitlines():
             print(linha)
-
 def perdeu():
     with open("perdeu.txt","r") as arquivo:
         for linha in arquivo.read().splitlines():
             print(linha)
-    
 def porta1():
     with open("porta1.txt","r") as arquivo:
         for linha in arquivo.read().splitlines():
             print(linha)
-    
 def porta2():
     with open("porta2.txt","r") as arquivo:
         for linha in arquivo.read().splitlines():
             print(linha)
-    
 def porta3():
     with open("porta3.txt","r") as arquivo:
         for linha in arquivo.read().splitlines():
             print(linha)
-
-
-
-
-
-
-#Esta função acrescenta a verificação da entrada permitindo os valores 1, 2 ou 3 apenas.            
-def faixa_int(pergunta,min,max):
+         
+def pergunta1(pergunta,min,max):
     while True:
         try:
             global a
             a = int(input(pergunta))
             if a < min or a > max:
-               print(f"Valor não permitido. Você deve escolher uma porta entre {min} e {max}.")
+                print(f"Valor não permitido. Você deve escolher uma porta entre {min} e {max}.")
             else:
                 return a
         except Exception as e:
             print("O valor deve ser numérico.")
 
+def pergunta2(pergunta,min,max):
+    while True:
+        try:
+            global b
+            b = int(input(pergunta))
+            if b < min or b > max:
+                print(f"Valor não permitido. Você deve escolher uma porta entre {min} e {max}.")
+            else:
+                return b
+        except Exception as e:
+            print("O valor deve ser numérico.")
+            
+def pergunta3(pergunta,min,max):
+    while True:
+        try:
+            global c
+            c = int(input(pergunta))
+            if c < min or c > max:
+                print(f"Valor não permitido. Você deve escolher uma porta entre {min} e {max}.")
+            else:
+                return c
+        except Exception as e:
+            print("O valor deve ser numérico.")
 
-#Aqui começa o programa
-
-print('\nHá um prêmio atrás de uma das 3 portas. ')
-todas_portas() #chama a função que mostra os desenhos das portas
-          
-faixa_int("Entre com um valor",1,3)
-
-p.append(a) #adiciona o valor entrado pelo usuário na lista de portas
-b = int(input(f'\nBacana, você escolheu a porta {a}.\nPara te ajudar vou retirar uma porta.'))
-
-if a == 1 and b == 2:
-    p.append(3)
-    porta2()
-  
-elif a == 1 and b == 3:
-    p.append(2)
-    porta3()
-elif a == 2 and b == 1:
-    p.append(3)
-    porta1()
-  
-elif a == 2 and b == 3:
-    p.append(1)
-    porta3()
-
-elif a == 3 and b == 1:
-    p.append(2)
-    porta1()
+while True:
+    jogar = input('Vamos jogar o "Let´s Make a Deal"? Pressione 1 para jogar ou qualquer tecla para sair.')
+    if jogar != '1':
+        break
     
-else:
-    p.append(1)
-    porta2()
+    print('\nHá um prêmio atrás de uma das 3 portas. ')
+    todas_portas() #chama a função que mostra os desenhos das portas
+        
+    pergunta1("ESCOLHE UMA PORTA: ",1,3)
+    p.append(a) #adiciona o valor entrado pelo usuário na lista de portas
+    print(f'\nBacana, você escolheu a porta {a}.')
+    pergunta2(f'Agora vou deixar você escolher uma das portas que sobraram para retirar do jogo e escolher novamente.\nNo início do jogo suas chances eram 33,33% e agora serão de 50% !!!\nVAMOS CONTINUAR...RETIRE UMA PORTA: ',1,3)
+
+    if a == 1 and b == 2:
+        p.append(3)
+        porta2()
     
-p.sort()
-print(f'\nAgora sua chande de acertar melhorou e você deve escolher entre 2 portas {p}.')
-print('E ai, vai mudar de porta ou continuar com a mesma?')
+    elif a == 1 and b == 3:
+        p.append(2)
+        porta3()
+    elif a == 2 and b == 1:
+        p.append(3)
+        porta1()
+    
+    elif a == 2 and b == 3:
+        p.append(1)
+        porta3()
 
-x = p[0]
-y = p[1]
+    elif a == 3 and b == 1:
+        p.append(2)
+        porta1()
+        
+    else:
+        p.append(1)
+        porta2()
+    p.sort()
+    x = p[0]
+    y = p[1]
+    
+    porta_certa = randint(x,y)
 
-a = int(input('Vai lá. Escolha a porta: '))
-porta_certa = randint(x,y)
+    pergunta3("Deseja continuar com a porta que esolheu primeiro ou trocar? Escolha: ",1,3)
 
-#os.system('cls')
-if a == porta_certa:
-    print('Você ganhou o prêmio!\n')
-    ganhou()
-else:
-    perdeu()
-    print('\nO prêmio estava na porta',porta_certa)
+    if a == porta_certa:
+        print('Você ganhou o prêmio!\n')
+        ganhou()
+    else:
+        perdeu()
+        print('\nO prêmio estava na porta',porta_certa)
+
+sair = input('Precione qualquer tela para sair. ')
